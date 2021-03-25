@@ -3,7 +3,9 @@
   vars_prompt:
    - name: ansible_become_pass
      prompt: "user's password? required to run installations"
-     when: ansible_become_pass == null
+    #  when: ansible_become_pass == null
+  # - name: vars_password
+  #    prompt: "user's password? required to run installations"
 
   tasks:
     - name: Get username from system
@@ -13,6 +15,7 @@
       register: username_result
 
     - set_fact: ansible_user="{{username_result.stdout}}"
+    # - set_fact: ansible_become_pass="{{vars_password}}"
 
     - name: Check sudo password
       command: echo "sudo password correct"
